@@ -1,1 +1,11 @@
-{}
+{
+    "@@locale" : "en",
+    "language" : "Language",
+    "login":"Login",
+    "id":"ID",
+    "passowrd":"Password",
+    "sign_up":"SIGN UP",
+
+    "not_a_member":"Not a member? ",
+    "register_now":"Register now"
+}

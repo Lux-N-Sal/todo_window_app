@@ -9,6 +9,7 @@ enum ButtonSize {
   large110,
   veryLarge,
   superLarge,
+  ultraLarge,
   infinity;
 
   double getSize() {
@@ -33,6 +34,8 @@ enum ButtonSize {
         return 130;
       case ButtonSize.superLarge:
         return 250;
+      case ButtonSize.ultraLarge:
+        return 300;
       case ButtonSize.infinity:
         return double.infinity;
     }

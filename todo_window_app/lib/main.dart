@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
 import 'package:todo_window_app/src/pages/login/view/login_page.dart';
+import 'package:todo_window_app/src/pages/sign_up/view/sign_up_page.dart';
 import 'package:todo_window_app/util/lang/generated/l10n.dart';
 import 'package:todo_window_app/util/lang/provider/lang_provider.dart';
 
@@ -30,6 +31,8 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+
       /// 타이틀
       title: 'Todo window app',
 
@@ -47,7 +50,12 @@ class MyApp extends ConsumerWidget {
       supportedLocales: S.delegate.supportedLocales,
 
       /// 홈페이지
-      home: const LoginPage(),
+      // home: const LoginPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LoginPage(),
+        '/signUp': (context) => const SignUpPage(),
+      },
     );
   }
 }

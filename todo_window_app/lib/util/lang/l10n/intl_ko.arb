@@ -1,1 +1,11 @@
-{}
+{
+    "@@locale" : "ko",
+    "language" : "언어",
+    "login":"로그인",
+    "id":"아이디",
+    "passowrd":"비밀번호",
+    "sign_up":"회원가입",
+
+    "not_a_member":"회원이 아니신가요? ",
+    "register_now":"지금 등록하기"
+}

@@ -21,5 +21,13 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ko';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "id": MessageLookupByLibrary.simpleMessage("아이디"),
+        "language": MessageLookupByLibrary.simpleMessage("언어"),
+        "login": MessageLookupByLibrary.simpleMessage("로그인"),
+        "not_a_member": MessageLookupByLibrary.simpleMessage("회원이 아니신가요? "),
+        "passowrd": MessageLookupByLibrary.simpleMessage("비밀번호"),
+        "register_now": MessageLookupByLibrary.simpleMessage("지금 등록하기"),
+        "sign_up": MessageLookupByLibrary.simpleMessage("회원가입")
+      };
 }
