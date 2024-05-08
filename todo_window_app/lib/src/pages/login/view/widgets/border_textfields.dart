@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
 
-class LoginTextField extends ConsumerStatefulWidget {
-  const LoginTextField({
+class BorderTextField extends ConsumerStatefulWidget {
+  const BorderTextField({
     super.key,
     this.obscure,
+    this.width,
+    this.onChanged,
     required this.title,
     required this.icon,
   });
@@ -13,12 +15,14 @@ class LoginTextField extends ConsumerStatefulWidget {
   final bool? obscure;
   final String title;
   final IconData icon;
+  final double? width;
+  final void Function(String)? onChanged;
 
   @override
-  ConsumerState<LoginTextField> createState() => _LoginTextFieldState();
+  ConsumerState<BorderTextField> createState() => _LoginTextFieldState();
 }
 
-class _LoginTextFieldState extends ConsumerState<LoginTextField> {
+class _LoginTextFieldState extends ConsumerState<BorderTextField> {
   late final TextEditingController textController;
 
   @override
@@ -36,7 +40,7 @@ class _LoginTextFieldState extends ConsumerState<LoginTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
+      width: widget.width ?? 300,
       margin: const EdgeInsets.all(5),
       child: TextField(
         controller: textController,
@@ -51,6 +55,7 @@ class _LoginTextFieldState extends ConsumerState<LoginTextField> {
           // color: Palette.loginSelectColor,
           color: ref.theme.color.text,
         ),
+        onChanged: widget.onChanged,
 
         decoration: InputDecoration(
           /// 아이콘
@@ -120,7 +125,7 @@ class TextFieldPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const LoginTextField(
+    return const BorderTextField(
       obscure: true,
       title: "Password",
       icon: Icons.lock,
@@ -136,7 +141,7 @@ class TextFieldID extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const LoginTextField(
+    return const BorderTextField(
       icon: Icons.account_circle,
       title: "ID",
     );
