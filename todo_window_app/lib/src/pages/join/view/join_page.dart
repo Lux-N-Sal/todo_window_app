@@ -1,22 +1,26 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
-import 'package:todo_window_app/src/dto/sign_up_request_dto.dart';
+import 'package:todo_window_app/src/dto/join_request_dto.dart';
+import 'package:todo_window_app/src/pages/join/provider/join_provider.dart';
+import 'package:todo_window_app/src/pages/join/provider/sign_up_provider.dart';
+import 'package:todo_window_app/src/pages/join/provider/state/sign_up_state.dart';
 import 'package:todo_window_app/src/pages/login/view/widgets/border_textfields.dart';
-import 'package:todo_window_app/src/pages/sign_up/provider/sign_up_provider.dart';
 import 'package:todo_window_app/src/public/widgets/titlebar.dart';
-import 'package:todo_window_app/src/repository/post/signup.dart';
 import 'package:todo_window_app/style/component/button/cancel_button.dart';
+import 'package:todo_window_app/style/component/button/custom_loading_button.dart';
 import 'package:todo_window_app/style/component/button/custom_text_button.dart';
 import 'package:todo_window_app/style/resources/button_size.dart';
 import 'package:todo_window_app/util/lang/provider/lang_provider.dart';
 
-class SignUpPage extends ConsumerWidget {
-  const SignUpPage({super.key});
+class JoinPage extends ConsumerWidget {
+  const JoinPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final word = ref.watch(langProvider).language;
+    final signUpState = ref.watch(signUpProvider);
     return Scaffold(
       body: Container(
         color: ref.theme.color.background,
@@ -41,7 +45,16 @@ class SignUpPage extends ConsumerWidget {
                         style: ref.theme.font.headline2,
                       ),
                       const SizedBox(height: 30),
-                      const SignUpBox(),
+                      // ProviderScope(
+                      //   overrides: [
+                      //     signUpTextProvider
+                      //         .overrideWith((ref) => ref.watch(signUpProvider)),
+                      //   ],
+                      //   child: const SignUpBox(),
+                      // ),
+                      SignUpBox(
+                        signUpState: signUpState,
+                      ),
                     ],
                   ),
                 ),
@@ -57,10 +70,15 @@ class SignUpPage extends ConsumerWidget {
 class SignUpBox extends ConsumerWidget {
   const SignUpBox({
     super.key,
+    required this.signUpState,
   });
+
+  final SignUpState signUpState;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // final signUpState = ref.watch(signUpTextProvider);
+    // final signUpState = ref.watch(signUpProvider);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -112,12 +130,15 @@ class SignUpBox extends ConsumerWidget {
             ref.read(signUpProvider.notifier).setEmail(email);
           },
         ),
-        ProviderScope(
-          overrides: [
-            signUpTextProvider.overrideWith((ref) => ref.watch(signUpProvider)),
-          ],
-          child: const SignUpButtonsArea(),
-        ),
+        SignUpButtonsArea(
+          signUpState: signUpState,
+        )
+        // ProviderScope(
+        //   overrides: [
+        //     signUpTextProvider.overrideWith((ref) => ref.watch(signUpProvider)),
+        //   ],
+        //   child: const SignUpButtonsArea(),
+        // ),
       ],
     );
   }
@@ -126,11 +147,14 @@ class SignUpBox extends ConsumerWidget {
 class SignUpButtonsArea extends ConsumerWidget {
   const SignUpButtonsArea({
     super.key,
+    required this.signUpState,
   });
+
+  final SignUpState signUpState;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final signUpState = ref.watch(signUpTextProvider);
+    final joinState = ref.watch(joinProvider);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -139,28 +163,39 @@ class SignUpButtonsArea extends ConsumerWidget {
           height: ButtonSize.small50,
           margin: const EdgeInsets.all(10),
           title: "취소",
-          onPressed: () {},
-        ),
-        CustomTextButton(
-          width: ButtonSize.superLarge,
-          height: ButtonSize.small50,
-          margin: const EdgeInsets.all(10),
-          title: "확인",
           onPressed: () {
-            print(
-                "${signUpState.id}\n${signUpState.name}\n${signUpState.password}\n${signUpState.passwordCheck}\n${signUpState.email}");
-
-            final dto = SignUpRequestDto(
-              loginId: signUpState.id,
-              userName: signUpState.name,
-              loginPw: signUpState.password,
-              loginPwCheck: signUpState.passwordCheck,
-              userEmail: signUpState.email,
-            );
-            final json = dto.toMap();
-            ref.read(requestSignUpProvider.notifier).signUp(json);
+            Navigator.pop(context, false);
+            print("취소");
           },
         ),
+        ref.watch(joinProvider).isLoading
+            ? const CustomLoadingButton(
+                width: ButtonSize.superLarge,
+                height: ButtonSize.small50,
+              )
+            : CustomTextButton(
+                width: ButtonSize.superLarge,
+                height: ButtonSize.small50,
+                margin: const EdgeInsets.all(10),
+                title: "확인",
+                onPressed: () async {
+                  final reqMsg = JoinRequestDto(
+                    loginId: signUpState.id,
+                    userName: signUpState.name,
+                    loginPw: signUpState.password,
+                    loginPwCheck: signUpState.passwordCheck,
+                    userEmail: signUpState.email,
+                  );
+                  final json = reqMsg.toMap();
+                  await ref.read(joinProvider.notifier).join(json);
+
+                  if (ref.watch(joinProvider).joinResponse.resultType == "S") {
+                    if (context.mounted) {
+                      Navigator.pop(context, true);
+                    }
+                  }
+                },
+              ),
       ],
     );
   }

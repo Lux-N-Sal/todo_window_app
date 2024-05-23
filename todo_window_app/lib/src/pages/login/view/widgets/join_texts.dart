@@ -5,8 +5,8 @@ import 'package:todo_window_app/style/resources/palette.dart';
 import 'package:todo_window_app/util/lang/provider/lang_provider.dart';
 
 /// 회원가입 문자
-class SignUpTexts extends ConsumerWidget {
-  const SignUpTexts({
+class JoinTexts extends ConsumerWidget {
+  const JoinTexts({
     super.key,
   });
 
@@ -60,7 +60,7 @@ class _SignUpTextButtonState extends ConsumerState<SignUpTextButton> {
         ),
         child: InkWell(
           onTap: () {
-            Navigator.pushNamed(context, '/signUp');
+            Navigator.pushNamed(context, '/join');
           },
           child: Text(
             word.register_now,

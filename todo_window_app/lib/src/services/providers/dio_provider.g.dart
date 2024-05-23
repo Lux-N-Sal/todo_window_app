@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dio.dart';
+part of 'dio_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dioHash() => r'9058f6f44a5832dd39b7b3e8f06a2793f50ecec6';
+String _$dioHash() => r'c2d639851bfb1cb205355f963c9b2a71e130e704';
 
 /// See also [dio].
 @ProviderFor(dio)

@@ -1,10 +1,10 @@
-class SignUpRequestDto {
+class JoinRequestDto {
   final String loginId;
   final String userName;
   final String loginPw;
   final String loginPwCheck;
   final String userEmail;
-  SignUpRequestDto({
+  JoinRequestDto({
     required this.loginId,
     required this.userName,
     required this.loginPw,
@@ -12,14 +12,14 @@ class SignUpRequestDto {
     required this.userEmail,
   });
 
-  SignUpRequestDto copyWith({
+  JoinRequestDto copyWith({
     String? loginId,
     String? userName,
     String? loginPw,
     String? loginPwCheck,
     String? userEmail,
   }) {
-    return SignUpRequestDto(
+    return JoinRequestDto(
       loginId: loginId ?? this.loginId,
       userName: userName ?? this.userName,
       loginPw: loginPw ?? this.loginPw,
@@ -38,8 +38,8 @@ class SignUpRequestDto {
     };
   }
 
-  factory SignUpRequestDto.fromMap(Map<String, dynamic> map) {
-    return SignUpRequestDto(
+  factory JoinRequestDto.fromMap(Map<String, dynamic> map) {
+    return JoinRequestDto(
       loginId: map['loginId'] as String,
       userName: map['userName'] as String,
       loginPw: map['loginPw'] as String,

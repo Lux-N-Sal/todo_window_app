@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:todo_window_app/src/pages/sign_up/provider/state/sign_up_state.dart';
+import 'package:todo_window_app/src/pages/join/provider/state/sign_up_state.dart';
 
 part 'sign_up_provider.g.dart';
 
