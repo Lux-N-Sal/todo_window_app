@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
-import 'package:todo_window_app/style/resources/button_padding.dart';
 import 'package:todo_window_app/style/resources/button_size.dart';
 
 class CustomLoadingButton extends ConsumerWidget {
@@ -9,16 +8,15 @@ class CustomLoadingButton extends ConsumerWidget {
     super.key,
     ButtonSize? width,
     ButtonSize? height,
-    ButtonPadding? margin,
+    this.margin,
     this.inactiveColor,
     this.loadingColor,
   })  : width = width ?? ButtonSize.small,
-        height = height ?? ButtonSize.small,
-        margin = margin ?? ButtonPadding.small;
+        height = height ?? ButtonSize.small;
 
   final ButtonSize width;
   final ButtonSize height;
-  final ButtonPadding margin;
+  final EdgeInsetsGeometry? margin;
   final Color? inactiveColor;
   final Color? loadingColor;
 
@@ -31,9 +29,7 @@ class CustomLoadingButton extends ConsumerWidget {
         child: Container(
           width: width.getSize(),
           height: height.getSize(),
-          margin: EdgeInsets.all(
-            margin.getPadding() * 0.75,
-          ),
+          margin: margin,
           decoration: BoxDecoration(
             /// isDisabled 시 색 조정
             color: inactiveColor,

@@ -10,12 +10,16 @@ class CustomCircleButton extends ConsumerWidget {
     ButtonSize? height,
     required this.icon,
     required this.onPressed,
+    this.backgroundColor,
+    this.iconSize,
   })  : width = width ?? ButtonSize.small40,
         height = height ?? ButtonSize.small40;
 
   final ButtonSize width;
   final ButtonSize height;
   final IconData icon;
+  final double? iconSize;
+  final Color? backgroundColor;
   final void Function() onPressed;
 
   @override
@@ -25,7 +29,7 @@ class CustomCircleButton extends ConsumerWidget {
       height: height.getSize(),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: ref.theme.color.surface,
+        color: backgroundColor ?? ref.theme.color.surface,
       ),
       child: ClipOval(
         child: Material(
@@ -36,7 +40,7 @@ class CustomCircleButton extends ConsumerWidget {
             child: Icon(
               icon,
               color: ref.theme.color.text,
-              size: 20,
+              size: iconSize ?? 20,
             ),
           ),
         ),
