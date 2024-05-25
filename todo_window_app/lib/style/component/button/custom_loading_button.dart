@@ -9,7 +9,7 @@ class CustomLoadingButton extends ConsumerWidget {
     ButtonSize? width,
     ButtonSize? height,
     this.margin,
-    this.inactiveColor,
+    this.backgroundColor,
     this.loadingColor,
   })  : width = width ?? ButtonSize.small,
         height = height ?? ButtonSize.small;
@@ -17,7 +17,7 @@ class CustomLoadingButton extends ConsumerWidget {
   final ButtonSize width;
   final ButtonSize height;
   final EdgeInsetsGeometry? margin;
-  final Color? inactiveColor;
+  final Color? backgroundColor;
   final Color? loadingColor;
 
   @override
@@ -32,7 +32,7 @@ class CustomLoadingButton extends ConsumerWidget {
           margin: margin,
           decoration: BoxDecoration(
             /// isDisabled 시 색 조정
-            color: inactiveColor,
+            color: backgroundColor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Material(
