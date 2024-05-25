@@ -17,7 +17,9 @@ class LoginPage extends ConsumerWidget {
       next.when(
         data: (data) {
           ref.read(loginViewmodelProvider.notifier).isLoadingEnd();
-          ref.read(loginViewmodelProvider.notifier).goHomePage(ref);
+          if (data) {
+            ref.read(loginViewmodelProvider.notifier).goHomePage(ref);
+          }
         },
         error: (error, stackTrace) {
           errorDialog(ref, (error as CustomError).error);
