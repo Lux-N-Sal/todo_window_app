@@ -22,7 +22,7 @@ final joinViewmodelProvider =
 );
 
 typedef _$JoinViewmodel = AutoDisposeNotifier<JoinState>;
-String _$asyncJoinHash() => r'99340be31d6ad818ff2d7816ca3894fa1b55dcf8';
+String _$asyncJoinHash() => r'e6ed6981c24740f41440a44fac559ef55fd3f0e1';
 
 /// See also [AsyncJoin].
 @ProviderFor(AsyncJoin)

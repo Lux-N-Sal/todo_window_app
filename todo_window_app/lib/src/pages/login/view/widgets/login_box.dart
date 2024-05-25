@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
+import 'package:todo_window_app/src/dto/request/login_request_dto.dart';
 import 'package:todo_window_app/src/pages/login/providers/login_provider.dart';
 import 'package:todo_window_app/src/pages/login/view/widgets/join_texts.dart';
 import 'package:todo_window_app/style/component/button/custom_loading_button.dart';
@@ -73,8 +74,14 @@ class LoginButton extends ConsumerWidget {
             width: ButtonSize.ultraLarge,
             height: ButtonSize.small40,
             title: "Login",
-            onPressed: () {
-              ref.read(loginViewmodelProvider.notifier).isLoadingStart();
+            onPressed: () async {
+              final req = LoginRequestDto(
+                loginId: viewmodel.loginTextfieldState.idController.text,
+                loginPw: viewmodel.loginTextfieldState.passwordController.text,
+              );
+
+              final json = req.toMap();
+              ref.read(asyncLoginProvider.notifier).login(json);
             },
           );
   }

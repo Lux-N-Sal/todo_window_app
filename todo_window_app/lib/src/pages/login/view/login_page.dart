@@ -2,7 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
+import 'package:todo_window_app/src/custom_error/custom_error.dart';
+import 'package:todo_window_app/src/pages/login/providers/login_provider.dart';
 import 'package:todo_window_app/src/pages/login/view/widgets/login_box.dart';
+import 'package:todo_window_app/src/public/widgets/error_dialog.dart';
 import 'package:todo_window_app/src/public/widgets/titlebar.dart';
 
 class LoginPage extends ConsumerWidget {
@@ -10,6 +13,21 @@ class LoginPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(asyncLoginProvider, (previous, next) {
+      next.when(
+        data: (data) {
+          ref.read(loginViewmodelProvider.notifier).isLoadingEnd();
+          ref.read(loginViewmodelProvider.notifier).goHomePage(ref);
+        },
+        error: (error, stackTrace) {
+          errorDialog(ref, (error as CustomError).error);
+          ref.read(loginViewmodelProvider.notifier).isLoadingEnd();
+        },
+        loading: () {
+          ref.read(loginViewmodelProvider.notifier).isLoadingStart();
+        },
+      );
+    });
     return const Scaffold(
       body: Column(
         children: [

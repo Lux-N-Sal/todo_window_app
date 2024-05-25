@@ -1,4 +1,4 @@
-import 'package:todo_window_app/src/dto/base_response_dto.dart';
+import 'package:todo_window_app/src/dto/response/base_response_dto.dart';
 
 class JoinResponseDto extends BaseResponseDto<String> {
   JoinResponseDto({
@@ -8,7 +8,8 @@ class JoinResponseDto extends BaseResponseDto<String> {
     required super.body,
   });
 
-  factory JoinResponseDto.toJson(Map<String, dynamic> json) => JoinResponseDto(
+  factory JoinResponseDto.fromJson(Map<String, dynamic> json) =>
+      JoinResponseDto(
         resultType: json['resultType'] ?? "",
         errorId: json['errorId'] ?? "",
         error: json['error'] ?? "",

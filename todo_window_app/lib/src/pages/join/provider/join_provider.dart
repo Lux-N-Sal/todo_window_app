@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:todo_window_app/src/enum/api.dart';
 import 'package:todo_window_app/src/pages/join/provider/state/join_state.dart';
 import 'package:todo_window_app/src/repositories/provider/join_repository_provider.dart';
 
@@ -42,7 +43,7 @@ class AsyncJoin extends _$AsyncJoin {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final res = await ref.read(joinRepositoryProvider).join(json);
-      return res.resultType == "S";
+      return res.resultType == APIResult.s.getString();
     });
   }
 }

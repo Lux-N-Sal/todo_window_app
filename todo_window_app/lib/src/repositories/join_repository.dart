@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:todo_window_app/src/custom_error/custom_error.dart';
-import 'package:todo_window_app/src/dto/join_response_dto.dart';
+import 'package:todo_window_app/src/dto/response/join_response_dto.dart';
 import 'package:todo_window_app/src/services/join_api_service.dart';
 
 class JoinRepository {

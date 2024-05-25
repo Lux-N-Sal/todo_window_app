@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todo_window_app/src/dto/join_request_dto.dart';
+import 'package:todo_window_app/src/dto/request/join_request_dto.dart';
 import 'package:todo_window_app/src/pages/join/provider/join_provider.dart';
 import 'package:todo_window_app/style/component/button/cancel_button.dart';
 import 'package:todo_window_app/style/component/button/custom_loading_button.dart';

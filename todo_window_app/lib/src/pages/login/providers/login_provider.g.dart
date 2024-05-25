@@ -6,7 +6,7 @@ part of 'login_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginViewmodelHash() => r'210cb7800e05b0b9b08bb9118d4eaebc7978f9d7';
+String _$loginViewmodelHash() => r'6cfbe01b1e7b96be40f190e8fb7630b0b54004ff';
 
 /// See also [LoginViewmodel].
 @ProviderFor(LoginViewmodel)
@@ -22,7 +22,7 @@ final loginViewmodelProvider =
 );
 
 typedef _$LoginViewmodel = AutoDisposeNotifier<LoginState>;
-String _$asyncLoginHash() => r'40bb02dc59f637e54a6ccc35672a77fe0472a8f6';
+String _$asyncLoginHash() => r'94d2f2fad91c867e74da3e9467c9afa67f2a93dd';
 
 /// See also [AsyncLogin].
 @ProviderFor(AsyncLogin)

@@ -23,7 +23,7 @@ class JoinPage extends ConsumerWidget {
           }
         },
         error: (error, stackTrace) {
-          errorDialog(context, (error as CustomError).error);
+          errorDialog(ref, (error as CustomError).error);
           ref.read(joinViewmodelProvider.notifier).loadingEnd();
         },
         loading: () {
