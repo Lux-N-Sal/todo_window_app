@@ -16,9 +16,6 @@ class JoinPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(asyncJoinProvider, (previous, next) {
       next.when(
-        loading: () {
-          ref.read(joinViewmodelProvider.notifier).loadingStart();
-        },
         data: (data) {
           ref.read(joinViewmodelProvider.notifier).loadingEnd();
           if (data) {
@@ -27,6 +24,10 @@ class JoinPage extends ConsumerWidget {
         },
         error: (error, stackTrace) {
           errorDialog(context, (error as CustomError).error);
+          ref.read(joinViewmodelProvider.notifier).loadingEnd();
+        },
+        loading: () {
+          ref.read(joinViewmodelProvider.notifier).loadingStart();
         },
       );
     });
