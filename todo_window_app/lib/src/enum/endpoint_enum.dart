@@ -1,6 +1,8 @@
 enum Endpoint {
   join,
-  login;
+  login,
+  getTodos,
+  ;
 
   String getPath() {
     switch (this) {
@@ -8,6 +10,8 @@ enum Endpoint {
         return "/v1/user/join";
       case Endpoint.login:
         return "/v1/user/login";
+      case Endpoint.getTodos:
+        return "/v1/list/lists";
     }
   }
 }

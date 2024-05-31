@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:todo_window_app/src/dto/response/todo_list_response_dto.dart';
 import 'package:todo_window_app/src/enum/api.dart';
+import 'package:todo_window_app/src/pages/home/provider/session_provider.dart';
+import 'package:todo_window_app/src/pages/home/provider/todo_list_provider.dart';
 import 'package:todo_window_app/src/pages/login/providers/state/login_state.dart';
 import 'package:todo_window_app/src/repositories/provider/login_repository_provider.dart';
+import 'package:todo_window_app/src/repositories/provider/todo_list_repository_provider.dart';
 
 part 'login_provider.g.dart';
 
@@ -31,7 +35,7 @@ class LoginViewmodel extends _$LoginViewmodel {
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [todoListRepository, TodoList])
 class AsyncLogin extends _$AsyncLogin {
   @override
   FutureOr<bool> build() {
@@ -41,8 +45,24 @@ class AsyncLogin extends _$AsyncLogin {
   Future<void> login(Map<String, dynamic> json) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      final res = await ref.read(loginRepositoryProvider).login(json);
-      return res.resultType == APIResult.s.getString();
+      final loginRes = await ref.read(loginRepositoryProvider).login(json);
+      if (loginRes.resultType == APIResult.s.getString()) {
+        final jwt = loginRes.body.sessionId;
+
+        /// jwt 저장
+        ref.read(sessionProvider.notifier).set(jwt);
+
+        /// 투두리스트 읽기
+        final GetTodoListResponseDto todosRes =
+            await ref.read(todoListRepositoryProvider).getTodoList(jwt: jwt);
+        print("todos:${todosRes.resultType}");
+        print(todosRes.error);
+        if (todosRes.resultType == APIResult.s.getString()) {
+          ref.read(todoListProvider.notifier).set(todosRes.body);
+          return true;
+        }
+      }
+      return false;
     });
   }
 }

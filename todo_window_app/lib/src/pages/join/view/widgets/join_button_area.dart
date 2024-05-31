@@ -47,8 +47,6 @@ class JoinButtonsArea extends ConsumerWidget {
                     userName: viewmodel.joinTextfieldState.nameController.text,
                     loginPw:
                         viewmodel.joinTextfieldState.passwordController.text,
-                    loginPwCheck: viewmodel
-                        .joinTextfieldState.passwordCheckController.text,
                     userEmail:
                         viewmodel.joinTextfieldState.emailController.text,
                   );

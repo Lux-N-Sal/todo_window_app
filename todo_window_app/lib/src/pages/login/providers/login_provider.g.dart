@@ -22,7 +22,7 @@ final loginViewmodelProvider =
 );
 
 typedef _$LoginViewmodel = AutoDisposeNotifier<LoginState>;
-String _$asyncLoginHash() => r'94d2f2fad91c867e74da3e9467c9afa67f2a93dd';
+String _$asyncLoginHash() => r'9da05f3e627dc4bdba308dd056e860a9061401be';
 
 /// See also [AsyncLogin].
 @ProviderFor(AsyncLogin)
@@ -32,8 +32,16 @@ final asyncLoginProvider =
   name: r'asyncLoginProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$asyncLoginHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[
+    todoListRepositoryProvider,
+    todoListProvider
+  ],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    todoListRepositoryProvider,
+    ...?todoListRepositoryProvider.allTransitiveDependencies,
+    todoListProvider,
+    ...?todoListProvider.allTransitiveDependencies
+  },
 );
 
 typedef _$AsyncLogin = AutoDisposeAsyncNotifier<bool>;

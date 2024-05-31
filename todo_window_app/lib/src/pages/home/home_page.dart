@@ -13,22 +13,21 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
       body: Row(
         children: [
-          const Column(
-            children: [
-              NavBar(),
-            ],
-          ),
+          const NavBar(),
           Expanded(
-            child: Column(
-              children: [
-                const TitleBar(),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: ref.theme.color.surface,
+            child: SizedBox(
+              height: double.infinity,
+              child: Column(
+                children: [
+                  const TitleBar(),
+                  Expanded(
+                    child: Container(
+                      width: double.infinity,
+                      color: ref.theme.color.surface,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

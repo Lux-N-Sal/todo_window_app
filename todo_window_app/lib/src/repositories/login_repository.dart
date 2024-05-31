@@ -11,7 +11,9 @@ class LoginRepository {
 
   Future<LoginResponseDto> login(Map<String, dynamic> json) async {
     try {
+      /// 로그인 진행
       final LoginResponseDto res = await loginAPIService.login(json);
+
       return res;
     } catch (e) {
       throw CustomError(error: e.toString());

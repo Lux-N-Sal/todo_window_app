@@ -4,7 +4,7 @@ import 'package:todo_window_app/src/const/const.dart';
 
 part 'dio_provider.g.dart';
 
-@riverpod
+@Riverpod(dependencies: [])
 Dio dio(DioRef ref) {
   final options = BaseOptions(baseUrl: pBaseUrl);
   return Dio(options);

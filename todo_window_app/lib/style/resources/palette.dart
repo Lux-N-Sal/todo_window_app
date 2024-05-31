@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 abstract class Palette {
   /// Chromatic color (유채색)
   static Color barrierColor = Colors.black26;
-  static const Color primary = Color(0xFF1C71C4);
-  static const Color primaryHover = Color(0xFF4A90E2);
-  static const Color primarySplash = Color(0xFF7AB1E8);
+  static const Color primary = Color.fromARGB(255, 120, 66, 131);
+  static const Color primaryHover = Color.fromARGB(255, 140, 86, 151);
+  static const Color primarySplash = Color.fromARGB(255, 220, 170, 230);
   static const Color onPrimary = Colors.white;
   static Color navy = const Color.fromARGB(255, 2, 27, 58);
   static Color red = const Color(0xFFFB432F);

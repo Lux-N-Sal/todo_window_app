@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
-import 'package:todo_window_app/src/pages/home/wrap_home_page.dart';
+import 'package:todo_window_app/src/pages/home/home_page.dart';
 import 'package:todo_window_app/src/pages/join/view/join_page.dart';
 import 'package:todo_window_app/src/pages/login/view/login_page.dart';
 import 'package:todo_window_app/util/lang/generated/l10n.dart';
@@ -56,7 +56,7 @@ class MyApp extends ConsumerWidget {
       routes: {
         '/': (context) => const LoginPage(),
         '/join': (context) => const JoinPage(),
-        '/home': (context) => const WrapHomePage(),
+        '/home': (context) => const HomePage(),
       },
     );
   }
