@@ -5,7 +5,7 @@ class NavBarState {
     required this.selectedIndex,
   });
 
-  factory NavBarState.init() => NavBarState(selectedIndex: 0);
+  factory NavBarState.init() => NavBarState(selectedIndex: -3);
 
   NavBarState copyWith({
     int? selectedIndex,
