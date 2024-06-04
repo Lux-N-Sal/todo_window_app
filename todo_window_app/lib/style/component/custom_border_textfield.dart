@@ -131,9 +131,7 @@ class _CustomBorderTextFieldState extends ConsumerState<CustomBorderTextField> {
         obscureText: widget.obscure,
 
         /// text style
-        style: ref.theme.font.boldbody2.copyWith(
-          color: ref.theme.color.text,
-        ),
+        style: ref.theme.font.boldbody1,
 
         decoration: InputDecoration(
           contentPadding: widget.contentPadding ?? const EdgeInsets.all(0),
@@ -167,14 +165,8 @@ class _CustomBorderTextFieldState extends ConsumerState<CustomBorderTextField> {
 
           /// 레이블
           labelText: widget.title,
-          labelStyle: ref.theme.font.body2.copyWith(
-            fontWeight: FontWeight.bold,
-            color: ref.theme.color.text,
-          ),
-          floatingLabelStyle: ref.theme.font.body2.copyWith(
-            fontWeight: FontWeight.bold,
-            color: ref.theme.color.text,
-          ),
+          labelStyle: ref.theme.font.boldbody1,
+          floatingLabelStyle: ref.theme.font.boldbody1,
 
           /// 힌트
           hintText: widget.title,

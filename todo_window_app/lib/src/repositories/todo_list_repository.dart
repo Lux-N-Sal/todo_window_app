@@ -10,10 +10,28 @@ class TodoListRepository {
     required this.todoListApiServices,
   });
 
-  Future<GetTodoListResponseDto> getTodoList({required String jwt}) async {
+  Future<TodoListsResponseDto> getTodoLists({required String jwt}) async {
     try {
-      final GetTodoListResponseDto res =
-          await todoListApiServices.getTodos(jwt: jwt);
+      final TodoListsResponseDto res =
+          await todoListApiServices.getTodoLists(jwt: jwt);
+
+      return res;
+    } catch (error, stackTrace) {
+      Logger.errorLog(
+          target: "TodoListRepository/getTodoList()",
+          error: error,
+          stackTrace: stackTrace);
+      throw CustomError(error: error.toString());
+    }
+  }
+
+  Future<TodoListResponseDto> createTodoList({
+    required String jwt,
+    required String listName,
+  }) async {
+    try {
+      final TodoListResponseDto res = await todoListApiServices.createTodoList(
+          jwt: jwt, listName: listName);
 
       return res;
     } catch (error, stackTrace) {

@@ -4,7 +4,7 @@ import 'package:todo_window_app/src/services/providers/dio_provider.dart';
 
 part 'login_api_service_provider.g.dart';
 
-@riverpod
+@Riverpod(dependencies: [dio])
 LoginAPIService loginAPIService(LoginAPIServiceRef ref) {
   return LoginAPIService(dio: ref.watch(dioProvider));
 }

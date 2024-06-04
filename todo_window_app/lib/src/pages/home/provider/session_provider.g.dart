@@ -6,12 +6,11 @@ part of 'session_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sessionHash() => r'e7485dbb949f166435254cafb8e5c8c9c420437f';
+String _$sessionHash() => r'66ce37c2cfcf34d3b0608b5cb2987081f8ebded7';
 
 /// See also [Session].
 @ProviderFor(Session)
-final sessionProvider =
-    AutoDisposeNotifierProvider<Session, SessionState>.internal(
+final sessionProvider = NotifierProvider<Session, SessionState>.internal(
   Session.new,
   name: r'sessionProvider',
   debugGetCreateSourceHash:
@@ -20,6 +19,6 @@ final sessionProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$Session = AutoDisposeNotifier<SessionState>;
+typedef _$Session = Notifier<SessionState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

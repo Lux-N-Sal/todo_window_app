@@ -6,7 +6,7 @@ part of 'login_api_service_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginAPIServiceHash() => r'fc84e1b21a0731b299ff7a2ec961d635548c7915';
+String _$loginAPIServiceHash() => r'5037a427aa8e1d8416fb78a8ad0a503ad4939a1c';
 
 /// See also [loginAPIService].
 @ProviderFor(loginAPIService)
@@ -16,8 +16,11 @@ final loginAPIServiceProvider = AutoDisposeProvider<LoginAPIService>.internal(
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$loginAPIServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[dioProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    dioProvider,
+    ...?dioProvider.allTransitiveDependencies
+  },
 );
 
 typedef LoginAPIServiceRef = AutoDisposeProviderRef<LoginAPIService>;

@@ -6,7 +6,7 @@ part of 'join_api_service_provicer.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$joinAPIServiceHash() => r'4957a15af3c1e960dfea695c6b7a8c3ba880f08e';
+String _$joinAPIServiceHash() => r'efd29e6f63142fde2cde2382b7e010f3f992f774';
 
 /// See also [joinAPIService].
 @ProviderFor(joinAPIService)
@@ -16,8 +16,11 @@ final joinAPIServiceProvider = AutoDisposeProvider<JoinAPIService>.internal(
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$joinAPIServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[dioProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    dioProvider,
+    ...?dioProvider.allTransitiveDependencies
+  },
 );
 
 typedef JoinAPIServiceRef = AutoDisposeProviderRef<JoinAPIService>;

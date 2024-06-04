@@ -53,8 +53,8 @@ class AsyncLogin extends _$AsyncLogin {
         ref.read(sessionProvider.notifier).set(jwt);
 
         /// 투두리스트 읽기
-        final GetTodoListResponseDto todosRes =
-            await ref.read(todoListRepositoryProvider).getTodoList(jwt: jwt);
+        final TodoListsResponseDto todosRes =
+            await ref.read(todoListRepositoryProvider).getTodoLists(jwt: jwt);
         print("todos:${todosRes.resultType}");
         print(todosRes.error);
         if (todosRes.resultType == APIResult.s.getString()) {

@@ -4,7 +4,7 @@ import 'package:todo_window_app/src/services/providers/dio_provider.dart';
 
 part 'join_api_service_provicer.g.dart';
 
-@riverpod
+@Riverpod(dependencies: [dio])
 JoinAPIService joinAPIService(JoinAPIServiceRef ref) {
   return JoinAPIService(dio: ref.watch(dioProvider));
 }

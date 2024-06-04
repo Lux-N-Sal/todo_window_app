@@ -22,7 +22,7 @@ final loginViewmodelProvider =
 );
 
 typedef _$LoginViewmodel = AutoDisposeNotifier<LoginState>;
-String _$asyncLoginHash() => r'9da05f3e627dc4bdba308dd056e860a9061401be';
+String _$asyncLoginHash() => r'4202c5a37c889c0a2c5206dc4f416077b5864fed';
 
 /// See also [AsyncLogin].
 @ProviderFor(AsyncLogin)

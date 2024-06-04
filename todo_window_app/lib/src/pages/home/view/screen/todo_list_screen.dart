@@ -11,8 +11,8 @@ class TodoListScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final todos = ref.watch(todoListProvider);
-    print(todos.length);
+    final todoLists = ref.watch(todoListProvider);
+    print(todoLists.length);
     return Expanded(
       child: Container(
           width: double.infinity,
@@ -22,17 +22,17 @@ class TodoListScreen extends ConsumerWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.7,
                 child: CustomCircularDropdown(
-                  firstValue: todos[0].name,
-                  items: [for (var todo in todos) todo.name],
+                  firstValue: todoLists.isNotEmpty ? todoLists[0].name : "",
+                  items: [for (var todo in todoLists) todo.name],
                   onChanged: (value) {},
                 ),
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: todos.length,
+                  itemCount: todoLists.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: Text(todos[index].name),
+                      title: Text(todoLists[index].name),
                     );
                   },
                 ),

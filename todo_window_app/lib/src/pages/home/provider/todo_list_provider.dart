@@ -16,7 +16,11 @@ class TodoList extends _$TodoList {
     return [];
   }
 
-  void set(List<TodoListState> todos) {
-    state = todos;
+  void set(List<TodoListState> todoLists) {
+    state = todoLists;
+  }
+
+  void add(TodoListState todoList) {
+    state = [...state, todoList];
   }
 }
