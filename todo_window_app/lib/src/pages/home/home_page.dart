@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
 import 'package:todo_window_app/src/pages/home/provider/nav_viewmodel_provider.dart';
+import 'package:todo_window_app/src/pages/home/provider/todo_list_provider.dart';
 import 'package:todo_window_app/src/pages/home/view/screen/todo_list_screen.dart';
 import 'package:todo_window_app/src/pages/home/view/widgets/nav_bar.dart';
 import 'package:todo_window_app/src/public/widgets/titlebar.dart';
@@ -12,6 +14,7 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = ref.watch(navViewmodelProvider).selectedIndex;
+    final todoList = ref.watch(todoListProvider);
     return Scaffold(
       body: Row(
         children: [
@@ -28,7 +31,14 @@ class HomePage extends ConsumerWidget {
                           ? const UserScreen()
                           : selectedIndex == -1
                               ? const SettingScreen()
-                              : Container(),
+                              : Column(
+                                  children: [
+                                    Text(
+                                      todoList[selectedIndex].name,
+                                      style: ref.theme.font.headline1,
+                                    )
+                                  ],
+                                ),
                 ],
               ),
             ),
