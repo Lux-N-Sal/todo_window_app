@@ -66,6 +66,8 @@ abstract class Palette {
   static Color oneDarkLoginHover = const Color(0xFF9AAABD);
   static Color oneDarkLoginSplash = const Color(0xFF5C6D7E);
   static Color oneDarkSelectedBoarder = const Color(0xFFD9DCE1);
+  static Color oneDarkRedHover = const Color(0xFFFF6B6B);
+  static Color oneDarkRedSplash = const Color(0xFFFF4C4C);
 
   /// login page colors
   static Color loginTextFieldFillColor = const Color(0xFF165EAB);
@@ -81,6 +83,9 @@ abstract class Palette {
   static Color lightLoginHover = const Color(0xFF757575);
   static Color lightLoginSplash = const Color(0xFF9E9E9E);
   static Color lightSelectedBoarder = const Color(0xFF4B4B4B);
+
+  static Color lightRedHover = const Color(0xFFFF9999);
+  static Color lightRedSplash = const Color(0xFFFF6666);
 
   /// toast color
   static Color toastSuccess = const Color(0xFF4CAF50);

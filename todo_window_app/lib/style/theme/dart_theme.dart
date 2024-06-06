@@ -40,6 +40,8 @@ class DarkTheme implements AppTheme {
     successBoard: Palette.successBoard,
     selectSuccessBoard: Palette.selectSuccessBoard,
     selectWarningBoard: Palette.selectWarningBoard,
+    redHover: Palette.oneDarkRedHover,
+    redSplash: Palette.oneDarkRedSplash,
   );
 
   @override

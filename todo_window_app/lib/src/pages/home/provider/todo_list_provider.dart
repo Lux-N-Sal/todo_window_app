@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:todo_window_app/src/pages/home/provider/state/todo_list_state.dart';
+import 'package:todo_window_app/src/pages/home/provider/todo_list_screen_viewmodel.dart';
 import 'package:todo_window_app/src/services/log_service.dart';
 
 part 'todo_list_provider.g.dart';
@@ -24,8 +25,13 @@ class TodoList extends _$TodoList {
     state = [...state, todoList];
   }
 
-  void setTitle({required int index, required String title}) {
+  void onTabTitle({required int index, required String title}) {
     state[index].controller.text = title;
+    state[index].focusNode.addListener(() {
+      if (!state[index].focusNode.hasFocus) {
+        ref.read(todoListScreenViewmodelProvider.notifier).setEditing(false);
+      }
+    });
   }
 
   void editTitle({required int index, required String title}) {

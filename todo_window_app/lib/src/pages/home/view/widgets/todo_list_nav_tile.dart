@@ -25,7 +25,7 @@ class TodoListNavTiles extends ConsumerWidget {
               ref.read(navViewmodelProvider.notifier).selectedIndex(index);
               ref
                   .read(todoListProvider.notifier)
-                  .setTitle(title: todos[index].name, index: index);
+                  .onTabTitle(title: todos[index].name, index: index);
             },
             title: todos[index].name,
           );
@@ -72,10 +72,12 @@ class TodoListTile extends ConsumerWidget {
                     : ref.theme.color.text,
               ),
               const SizedBox(width: 20),
-              Text(
-                title,
-                style: ref.theme.font.boldbody1,
-                overflow: TextOverflow.ellipsis,
+              Expanded(
+                child: Text(
+                  title,
+                  style: ref.theme.font.boldbody1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               )
             ],
           ),

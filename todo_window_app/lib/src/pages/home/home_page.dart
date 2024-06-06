@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/src/pages/home/provider/nav_viewmodel_provider.dart';
+import 'package:todo_window_app/src/pages/home/provider/todo_list_data_provider.dart';
 import 'package:todo_window_app/src/pages/home/provider/todo_list_provider.dart';
 import 'package:todo_window_app/src/pages/home/view/screen/basic_screen.dart';
 import 'package:todo_window_app/src/pages/home/view/screen/todo_list_screen.dart';
@@ -32,9 +33,13 @@ class HomePage extends ConsumerWidget {
                           ? const UserScreen()
                           : selectedIndex == -1
                               ? const SettingScreen()
-                              : TodoListScreen(
-                                  todoList: todoList,
-                                  selectedIndex: selectedIndex),
+                              : ProviderScope(
+                                  overrides: [
+                                    todoListDataProvider
+                                        .overrideWithValue(todoList)
+                                  ],
+                                  child: const TodoListScreen(),
+                                ),
                 ],
               ),
             ),

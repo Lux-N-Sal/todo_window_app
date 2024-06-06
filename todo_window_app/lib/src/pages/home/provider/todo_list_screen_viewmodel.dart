@@ -17,6 +17,7 @@ class TodoListScreenViewmodel extends _$TodoListScreenViewmodel {
 
   void setEditing(bool value) {
     state = state.copyWith(isEditing: value);
+    if (!value) {}
   }
 
   void setTitle(String title) {

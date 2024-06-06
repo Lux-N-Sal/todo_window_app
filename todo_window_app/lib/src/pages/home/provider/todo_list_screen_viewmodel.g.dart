@@ -7,7 +7,7 @@ part of 'todo_list_screen_viewmodel.dart';
 // **************************************************************************
 
 String _$todoListScreenViewmodelHash() =>
-    r'bdebca71abdc9e8fa4fd9d44698c0899c0ecb14a';
+    r'82b0afd86f0e46f04d8ce6a84bf35472e95c4d80';
 
 /// See also [TodoListScreenViewmodel].
 @ProviderFor(TodoListScreenViewmodel)

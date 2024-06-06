@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'app_theme.dart';
 
 class AppColor {
@@ -34,6 +35,8 @@ class AppColor {
     required this.successBoard,
     required this.selectWarningBoard,
     required this.selectSuccessBoard,
+    required this.redHover,
+    required this.redSplash,
   });
 
   /// Surface
@@ -83,4 +86,7 @@ class AppColor {
   final Color successBoard;
   final Color selectWarningBoard;
   final Color selectSuccessBoard;
+
+  final Color redHover;
+  final Color redSplash;
 }

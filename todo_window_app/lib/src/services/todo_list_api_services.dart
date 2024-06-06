@@ -93,4 +93,32 @@ class TodoListApiServices {
       return EmptyResponseDto.init();
     }
   }
+
+  Future<EmptyResponseDto> deleteTodoList({
+    required String jwt,
+    required String listId,
+  }) async {
+    try {
+      final Response res = await dio.delete(
+        "${Endpoint.list.getPath()}/$listId",
+        options: Options(
+          headers: {
+            JsonTag.authorization.getString(): 'Bearer $jwt',
+          },
+        ),
+      );
+      if (res.statusCode != 200) {
+        throw dioError(res);
+      }
+      print(res.data);
+      return EmptyResponseDto.fromJson(res.data);
+    } catch (error, stackTrace) {
+      Logger.errorLog(
+        target: "TodoListApiServices/deleteTodoList()",
+        error: error,
+        stackTrace: stackTrace,
+      );
+      return EmptyResponseDto.init();
+    }
+  }
 }

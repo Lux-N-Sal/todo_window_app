@@ -40,6 +40,8 @@ class LightTheme implements AppTheme {
     successBoard: Palette.successBoard,
     selectSuccessBoard: Palette.selectSuccessBoard,
     selectWarningBoard: Palette.selectWarningBoard,
+    redHover: Palette.lightRedHover,
+    redSplash: Palette.lightRedSplash,
   );
 
   @override

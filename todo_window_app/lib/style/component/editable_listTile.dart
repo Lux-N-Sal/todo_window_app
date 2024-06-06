@@ -25,34 +25,8 @@ class EditableListTile extends ConsumerWidget {
     this.onSubmitted,
   });
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   controller = TextEditingController(text: title);
-
-  // @override
-  // void dispose() {
-  //   controller.dispose();
-  //   focusNode.dispose();
-  //   super.dispose();
-  // }
-
-  // @override
-  // void didUpdateWidget(EditableListTile oldWidget) {
-  //   super.didUpdateWidget(oldWidget);
-  //   if (title != title) {
-  //     controller.text = title;
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    focusNode.addListener(() {
-      if (!focusNode.hasFocus) {
-        ref.read(todoListScreenViewmodelProvider.notifier).setEditing(false);
-      }
-    });
-
     return GestureDetector(
       onTap: () {
         if (isEditing) {
@@ -78,13 +52,10 @@ class EditableListTile extends ConsumerWidget {
                 hoverColor: ref.theme.color.hoverColor,
                 splashColor: ref.theme.color.splashColor,
                 title: Text(
-                  controller.text,
+                  title,
                   style: ref.theme.font.headline1,
                 ),
                 onTap: () {
-                  // setState(() {
-                  //   isEditing = true;
-                  // });
                   ref
                       .read(todoListScreenViewmodelProvider.notifier)
                       .setEditing(true);
@@ -213,9 +184,7 @@ class StatelessTextfeild extends ConsumerWidget {
                   width: ButtonSize.tiny20,
                   height: ButtonSize.tiny20,
                   icon: sufIcon!,
-                  onPressed: () {
-                    sufOnPressed ?? print("no");
-                  },
+                  onPressed: sufOnPressed ?? () {},
                 )
               : null,
 
