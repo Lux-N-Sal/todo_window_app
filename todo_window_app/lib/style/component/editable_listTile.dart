@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
+import 'package:todo_window_app/src/pages/home/provider/todo_list_provider.dart';
 import 'package:todo_window_app/src/pages/home/provider/todo_list_screen_viewmodel.dart';
 import 'package:todo_window_app/style/component/button/custom_circle_button.dart';
 import 'package:todo_window_app/style/resources/button_size.dart';
@@ -11,6 +12,7 @@ class EditableListTile extends ConsumerWidget {
   final TextEditingController controller;
   final bool isEditing;
   final FocusNode focusNode;
+  final int index;
 
   final void Function()? sufOnPressed;
   final void Function(String)? onSubmitted;
@@ -21,6 +23,7 @@ class EditableListTile extends ConsumerWidget {
     required this.controller,
     required this.isEditing,
     required this.focusNode,
+    required this.index,
     this.sufOnPressed,
     this.onSubmitted,
   });
@@ -56,6 +59,9 @@ class EditableListTile extends ConsumerWidget {
                   style: ref.theme.font.headline1,
                 ),
                 onTap: () {
+                  ref
+                      .read(todoListProvider.notifier)
+                      .onTabTitle(index: index, title: title);
                   ref
                       .read(todoListScreenViewmodelProvider.notifier)
                       .setEditing(true);

@@ -30,6 +30,7 @@ class TodoListScreen extends ConsumerWidget {
             children: [
               Expanded(
                 child: EditableListTile(
+                  index: selectedIndex,
                   title: todoLists[selectedIndex].name,
                   controller: todoLists[selectedIndex].controller,
                   isEditing: viewmodel.isEditing,
