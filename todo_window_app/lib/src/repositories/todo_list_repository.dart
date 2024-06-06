@@ -36,7 +36,26 @@ class TodoListRepository {
       return res;
     } catch (error, stackTrace) {
       Logger.errorLog(
-          target: "TodoListRepository/getTodoList()",
+          target: "TodoListRepository/createTodoList()",
+          error: error,
+          stackTrace: stackTrace);
+      throw CustomError(error: error.toString());
+    }
+  }
+
+  Future<EmptyResponseDto> editTodoList({
+    required String jwt,
+    required String listId,
+    required String listName,
+  }) async {
+    try {
+      final EmptyResponseDto res = await todoListApiServices.editTodoList(
+          jwt: jwt, listId: listId, listName: listName);
+
+      return res;
+    } catch (error, stackTrace) {
+      Logger.errorLog(
+          target: "TodoListRepository/editTodoList()",
           error: error,
           stackTrace: stackTrace);
       throw CustomError(error: error.toString());

@@ -23,4 +23,25 @@ class TodoList extends _$TodoList {
   void add(TodoListState todoList) {
     state = [...state, todoList];
   }
+
+  void setTitle({required int index, required String title}) {
+    state[index].controller.text = title;
+  }
+
+  void editTitle({required int index, required String title}) {
+    final todoList = state;
+    todoList[index] = state[index].copyWith(
+      name: title,
+    );
+    state[index] = state[index].copyWith(
+      name: title,
+    );
+
+    state = state
+        .map(
+          (todo) =>
+              todo.id == state[index].id ? todo.copyWith(name: title) : todo,
+        )
+        .toList();
+  }
 }

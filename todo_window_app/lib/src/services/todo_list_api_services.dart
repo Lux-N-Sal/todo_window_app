@@ -63,4 +63,34 @@ class TodoListApiServices {
       return TodoListResponseDto.init();
     }
   }
+
+  Future<EmptyResponseDto> editTodoList({
+    required String jwt,
+    required String listId,
+    required String listName,
+  }) async {
+    try {
+      final Response res = await dio.put(
+        "${Endpoint.list.getPath()}/$listId",
+        options: Options(
+          headers: {
+            JsonTag.authorization.getString(): 'Bearer $jwt',
+          },
+        ),
+        data: {JsonTag.changeListName.getString(): listName},
+      );
+      if (res.statusCode != 200) {
+        throw dioError(res);
+      }
+      print(res.data);
+      return EmptyResponseDto.fromJson(res.data);
+    } catch (error, stackTrace) {
+      Logger.errorLog(
+        target: "TodoListApiServices/editTodoList()",
+        error: error,
+        stackTrace: stackTrace,
+      );
+      return EmptyResponseDto.init();
+    }
+  }
 }

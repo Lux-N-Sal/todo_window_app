@@ -2,22 +2,113 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
+import 'package:todo_window_app/src/pages/home/provider/todo_list_screen_viewmodel.dart';
 import 'package:todo_window_app/style/component/button/custom_circle_button.dart';
 import 'package:todo_window_app/style/resources/button_size.dart';
 
-class CustomBorderTextField extends ConsumerStatefulWidget {
-  const CustomBorderTextField({
+class EditableListTile extends ConsumerWidget {
+  final String title;
+  final TextEditingController controller;
+  final bool isEditing;
+  final FocusNode focusNode;
+
+  final void Function()? sufOnPressed;
+  final void Function(String)? onSubmitted;
+
+  const EditableListTile({
     super.key,
-    bool? obscure,
+    required this.title,
+    required this.controller,
+    required this.isEditing,
+    required this.focusNode,
+    this.sufOnPressed,
+    this.onSubmitted,
+  });
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   controller = TextEditingController(text: title);
+
+  // @override
+  // void dispose() {
+  //   controller.dispose();
+  //   focusNode.dispose();
+  //   super.dispose();
+  // }
+
+  // @override
+  // void didUpdateWidget(EditableListTile oldWidget) {
+  //   super.didUpdateWidget(oldWidget);
+  //   if (title != title) {
+  //     controller.text = title;
+  //   }
+  // }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    focusNode.addListener(() {
+      if (!focusNode.hasFocus) {
+        ref.read(todoListScreenViewmodelProvider.notifier).setEditing(false);
+      }
+    });
+
+    return GestureDetector(
+      onTap: () {
+        if (isEditing) {
+          focusNode.unfocus();
+        }
+      },
+      child: ListTile(
+        hoverColor: ref.theme.color.hoverColor,
+        splashColor: ref.theme.color.splashColor,
+        title: isEditing
+            ? StatelessTextfeild(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                title: "리스트명 수정",
+                labelStyle: ref.theme.font.boldbody1,
+                textStyle: ref.theme.font.headline1,
+                controller: controller,
+                focusNode: focusNode,
+                sufIcon: Icons.edit,
+                sufOnPressed: sufOnPressed,
+                onSubmitted: onSubmitted,
+              )
+            : ListTile(
+                hoverColor: ref.theme.color.hoverColor,
+                splashColor: ref.theme.color.splashColor,
+                title: Text(
+                  controller.text,
+                  style: ref.theme.font.headline1,
+                ),
+                onTap: () {
+                  // setState(() {
+                  //   isEditing = true;
+                  // });
+                  ref
+                      .read(todoListScreenViewmodelProvider.notifier)
+                      .setEditing(true);
+                  focusNode.requestFocus();
+                },
+              ),
+      ),
+    );
+  }
+}
+
+class StatelessTextfeild extends ConsumerWidget {
+  const StatelessTextfeild({
+    super.key,
     this.readonly,
     this.width,
     required this.title,
     this.preIcon,
     this.sufIcon,
+    this.obscure,
     this.isEnable,
     this.focusBorderColor,
     this.contentPadding,
-    this.focusNode,
+    required this.focusNode,
     required this.controller,
     this.backgroundColor,
     this.textStyle,
@@ -26,7 +117,7 @@ class CustomBorderTextField extends ConsumerStatefulWidget {
     this.onChange,
     this.sufOnPressed,
     this.onSubmitted,
-  }) : obscure = obscure ?? false;
+  });
 
   /// 읽기 전용인지
   final bool? readonly;
@@ -46,7 +137,7 @@ class CustomBorderTextField extends ConsumerStatefulWidget {
 
   /// 비밀번호 text 여부
   /// ***로 입력된다.
-  final bool obscure;
+  final bool? obscure;
 
   /// enable 여부
   final bool? isEnable;
@@ -83,114 +174,70 @@ class CustomBorderTextField extends ConsumerStatefulWidget {
   final void Function(String)? onSubmitted;
 
   @override
-  ConsumerState<CustomBorderTextField> createState() =>
-      _CustomBorderTextFieldState();
-}
-
-class _CustomBorderTextFieldState extends ConsumerState<CustomBorderTextField> {
-  @override
-  void initState() {
-    if (widget.focusNode != null) {
-      widget.focusNode!.addListener(() {
-        onFocus();
-      });
-    }
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    if (widget.focusNode != null) {
-      widget.focusNode!.removeListener(() {
-        onFocus();
-      });
-    }
-
-    super.dispose();
-  }
-
-  void onFocus() {
-    if (widget.focusNode!.hasFocus) {
-      widget.onFoucs!();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      width: widget.width ?? 250,
+      width: width ?? 250,
       height: 40,
       margin: const EdgeInsets.all(5),
       child: TextField(
-        focusNode: widget.focusNode,
-        controller: widget.controller,
+        focusNode: focusNode,
+        controller: controller,
 
-        readOnly: widget.readonly ?? false,
+        readOnly: readonly ?? false,
 
-        enabled: widget.isEnable,
+        enabled: isEnable,
 
         /// 텍스트 필드 내용 변경 시
-        onChanged: widget.onChange,
+        onChanged: onChange,
 
         /// 비밀번호 효과
-        obscureText: widget.obscure,
+        obscureText: obscure ?? false,
 
         /// text style
-        style: widget.textStyle ?? ref.theme.font.boldbody2,
+        style: textStyle ?? ref.theme.font.boldbody2,
 
         decoration: InputDecoration(
-          contentPadding: widget.contentPadding ?? const EdgeInsets.all(0),
+          contentPadding: contentPadding ?? const EdgeInsets.all(0),
 
           /// 아이콘
-          prefixIcon: widget.preIcon != null
+          prefixIcon: preIcon != null
               ? Icon(
-                  widget.preIcon,
+                  preIcon,
                   color: ref.theme.color.text,
                 )
               : null,
 
-          suffixIcon: widget.sufIcon != null
-              // ? IconButton(
-              //     hoverColor: ref.theme.color.hoverColor,
-              //     splashColor: ref.theme.color.splashColor,
-              //     icon: Icon(
-              //       widget.sufIcon,
-              //       color: ref.theme.color.text,
-              //     ),
-              //     onPressed: widget.sufOnPressed,
-              //   )
+          suffixIcon: sufIcon != null
               ? CustomCircleButton(
                   backgroundColor: Colors.transparent,
                   width: ButtonSize.tiny20,
                   height: ButtonSize.tiny20,
-                  icon: widget.sufIcon!,
+                  icon: sufIcon!,
                   onPressed: () {
-                    print("a");
-                    widget.sufOnPressed ?? print("no");
-                    print("b");
+                    sufOnPressed ?? print("no");
                   },
                 )
               : null,
 
           /// 레이블
-          labelText: widget.title,
-          labelStyle: widget.labelStyle ??
+          labelText: title,
+          labelStyle: labelStyle ??
               ref.theme.font.body2.copyWith(
                 fontWeight: FontWeight.bold,
                 color: ref.theme.color.text,
               ),
-          floatingLabelStyle: ref.theme.font.body2.copyWith(
-            fontWeight: FontWeight.bold,
-            color: ref.theme.color.text,
-          ),
+          floatingLabelStyle: labelStyle ??
+              ref.theme.font.body2.copyWith(
+                fontWeight: FontWeight.bold,
+                color: ref.theme.color.text,
+              ),
 
           /// 힌트
-          hintText: widget.title,
+          hintText: title,
           hintStyle: ref.theme.font.hintBody12,
 
           /// 색 채우기
-          fillColor: widget.backgroundColor ?? ref.theme.color.container,
+          fillColor: backgroundColor ?? ref.theme.color.container,
           filled: true,
 
           /// 박스 크기 조정
@@ -199,8 +246,7 @@ class _CustomBorderTextFieldState extends ConsumerState<CustomBorderTextField> {
           /// 포커스 테두리
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: widget.focusBorderColor ??
-                  ref.theme.color.selectedBoarderColor,
+              color: focusBorderColor ?? ref.theme.color.selectedBoarderColor,
             ),
             borderRadius: const BorderRadius.all(
               Radius.circular(5),
@@ -230,7 +276,7 @@ class _CustomBorderTextFieldState extends ConsumerState<CustomBorderTextField> {
           ),
         ),
 
-        onSubmitted: widget.onSubmitted,
+        onSubmitted: onSubmitted,
       ),
     );
   }

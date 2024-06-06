@@ -46,3 +46,22 @@ class TodoListResponseDto extends BaseResponseDto<TodoListState> {
         body: TodoListState.fromJson(json['body']),
       );
 }
+
+class EmptyResponseDto extends BaseResponseDto<String> {
+  EmptyResponseDto(
+      {required super.resultType,
+      required super.errorId,
+      required super.error,
+      required super.body});
+
+  factory EmptyResponseDto.init() =>
+      EmptyResponseDto(resultType: "", errorId: "", error: "", body: "");
+
+  factory EmptyResponseDto.fromJson(Map<String, dynamic> json) =>
+      EmptyResponseDto(
+        resultType: json['resultType'] ?? "",
+        errorId: json['errorId'] ?? "",
+        error: json['error'] ?? "",
+        body: json['body'] ?? "",
+      );
+}
