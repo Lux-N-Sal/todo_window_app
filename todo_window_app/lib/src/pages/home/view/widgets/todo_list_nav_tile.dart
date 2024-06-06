@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
 import 'package:todo_window_app/src/pages/home/provider/nav_viewmodel_provider.dart';
 import 'package:todo_window_app/src/pages/home/provider/todo_list_provider.dart';
-import 'package:todo_window_app/style/component/button/outlined_icon_button.dart';
 import 'package:todo_window_app/style/resources/palette.dart';
 
 class TodoListNavTiles extends ConsumerWidget {
@@ -79,10 +78,6 @@ class TodoListTile extends ConsumerWidget {
                 overflow: TextOverflow.ellipsis,
               )
             ],
-          ),
-          trailing: OutlinedIconButton(
-            icon: Icons.edit,
-            onPressed: () {},
           ),
           onTap: onTap,
         ),
