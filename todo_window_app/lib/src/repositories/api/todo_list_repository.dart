@@ -5,13 +5,15 @@ import 'package:todo_window_app/src/dto/response/todo_list_response_dto.dart';
 import 'package:todo_window_app/src/enum/api.dart';
 import 'package:todo_window_app/src/pages/home/provider/nav_viewmodel_provider.dart';
 import 'package:todo_window_app/src/pages/home/provider/todo_list_provider.dart';
-import 'package:todo_window_app/src/services/log_service.dart';
-import 'package:todo_window_app/src/services/todo_list_api_services.dart';
+import 'package:todo_window_app/src/services/api/todo_list_api_services.dart';
+import 'package:todo_window_app/src/services/local/log_file_service.dart';
 
 class TodoListRepository {
   final TodoListApiServices todoListApiServices;
+  final LogFileService logFileService;
   TodoListRepository({
     required this.todoListApiServices,
+    required this.logFileService,
   });
 
   Future<TodoListsResponseDto> getTodoLists({required String jwt}) async {
@@ -21,7 +23,7 @@ class TodoListRepository {
 
       return res;
     } catch (error, stackTrace) {
-      Logger.errorLog(
+      logFileService.errorLog(
           target: "TodoListRepository/getTodoList()",
           error: error,
           stackTrace: stackTrace);
@@ -39,7 +41,7 @@ class TodoListRepository {
 
       return res;
     } catch (error, stackTrace) {
-      Logger.errorLog(
+      logFileService.errorLog(
           target: "TodoListRepository/createTodoList()",
           error: error,
           stackTrace: stackTrace);
@@ -65,7 +67,7 @@ class TodoListRepository {
       }
       return res;
     } catch (error, stackTrace) {
-      Logger.errorLog(
+      logFileService.errorLog(
           target: "TodoListRepository/editTodoList()",
           error: error,
           stackTrace: stackTrace);
@@ -93,7 +95,7 @@ class TodoListRepository {
 
       return res;
     } catch (error, stackTrace) {
-      Logger.errorLog(
+      logFileService.errorLog(
           target: "TodoListRepository/deleteTodoList()",
           error: error,
           stackTrace: stackTrace);

@@ -6,7 +6,7 @@ part of 'join_api_service_provicer.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$joinAPIServiceHash() => r'efd29e6f63142fde2cde2382b7e010f3f992f774';
+String _$joinAPIServiceHash() => r'ec36acbf719e9901b22c65ad37f68b8c7f168a9d';
 
 /// See also [joinAPIService].
 @ProviderFor(joinAPIService)
@@ -16,10 +16,12 @@ final joinAPIServiceProvider = AutoDisposeProvider<JoinAPIService>.internal(
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$joinAPIServiceHash,
-  dependencies: <ProviderOrFamily>[dioProvider],
+  dependencies: <ProviderOrFamily>[dioProvider, logFileServiceProvider],
   allTransitiveDependencies: <ProviderOrFamily>{
     dioProvider,
-    ...?dioProvider.allTransitiveDependencies
+    ...?dioProvider.allTransitiveDependencies,
+    logFileServiceProvider,
+    ...?logFileServiceProvider.allTransitiveDependencies
   },
 );
 

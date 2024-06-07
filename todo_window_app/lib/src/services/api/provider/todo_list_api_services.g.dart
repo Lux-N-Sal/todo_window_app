@@ -7,7 +7,7 @@ part of 'todo_list_api_services.dart';
 // **************************************************************************
 
 String _$todoListApiServicesHash() =>
-    r'57b5e6dca762839ff7085c9ee5d6c2b00c5e8388';
+    r'd6794fe2da9555cafc96367002d76cad0acf9a05';
 
 /// See also [todoListApiServices].
 @ProviderFor(todoListApiServices)
@@ -18,10 +18,12 @@ final todoListApiServicesProvider =
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$todoListApiServicesHash,
-  dependencies: <ProviderOrFamily>[dioProvider],
+  dependencies: <ProviderOrFamily>[dioProvider, logFileServiceProvider],
   allTransitiveDependencies: <ProviderOrFamily>{
     dioProvider,
-    ...?dioProvider.allTransitiveDependencies
+    ...?dioProvider.allTransitiveDependencies,
+    logFileServiceProvider,
+    ...?logFileServiceProvider.allTransitiveDependencies
   },
 );
 

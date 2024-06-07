@@ -3,13 +3,15 @@ import 'package:dio/dio.dart';
 import 'package:todo_window_app/src/dto/response/todo_list_response_dto.dart';
 import 'package:todo_window_app/src/enum/endpoint_enum.dart';
 import 'package:todo_window_app/src/enum/json_tag.dart';
-import 'package:todo_window_app/src/services/log_service.dart';
-import 'package:todo_window_app/src/services/providers/dio_provider.dart';
+import 'package:todo_window_app/src/services/api/provider/dio_provider.dart';
+import 'package:todo_window_app/src/services/local/log_file_service.dart';
 
 class TodoListApiServices {
   Dio dio;
+  final LogFileService logFileService;
   TodoListApiServices({
     required this.dio,
+    required this.logFileService,
   });
   Future<TodoListsResponseDto> getTodoLists({required String jwt}) async {
     try {
@@ -27,7 +29,7 @@ class TodoListApiServices {
       print(res.data.toString());
       return TodoListsResponseDto.fromJson(res.data);
     } catch (error, stackTrace) {
-      Logger.errorLog(
+      logFileService.errorLog(
         target: "TodoListApiServices/getTodoLists()",
         error: error,
         stackTrace: stackTrace,
@@ -55,7 +57,7 @@ class TodoListApiServices {
       }
       return TodoListResponseDto.fromJson(res.data);
     } catch (error, stackTrace) {
-      Logger.errorLog(
+      logFileService.errorLog(
         target: "TodoListApiServices/createTodoList()",
         error: error,
         stackTrace: stackTrace,
@@ -85,7 +87,7 @@ class TodoListApiServices {
       print(res.data);
       return EmptyResponseDto.fromJson(res.data);
     } catch (error, stackTrace) {
-      Logger.errorLog(
+      logFileService.errorLog(
         target: "TodoListApiServices/editTodoList()",
         error: error,
         stackTrace: stackTrace,
@@ -113,7 +115,7 @@ class TodoListApiServices {
       print(res.data);
       return EmptyResponseDto.fromJson(res.data);
     } catch (error, stackTrace) {
-      Logger.errorLog(
+      logFileService.errorLog(
         target: "TodoListApiServices/deleteTodoList()",
         error: error,
         stackTrace: stackTrace,

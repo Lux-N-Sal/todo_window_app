@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:todo_window_app/src/enum/api.dart';
 import 'package:todo_window_app/src/pages/join/provider/state/join_state.dart';
-import 'package:todo_window_app/src/repositories/provider/join_repository_provider.dart';
+import 'package:todo_window_app/src/repositories/api/provider/join_repository_provider.dart';
 
 part 'join_provider.g.dart';
 

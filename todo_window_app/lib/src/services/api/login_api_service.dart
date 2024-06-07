@@ -2,12 +2,15 @@
 import 'package:dio/dio.dart';
 import 'package:todo_window_app/src/dto/response/login_response_dto.dart';
 import 'package:todo_window_app/src/enum/endpoint_enum.dart';
-import 'package:todo_window_app/src/services/providers/dio_provider.dart';
+import 'package:todo_window_app/src/services/api/provider/dio_provider.dart';
+import 'package:todo_window_app/src/services/local/log_file_service.dart';
 
 class LoginAPIService {
   final Dio dio;
+  final LogFileService logFileService;
   LoginAPIService({
     required this.dio,
+    required this.logFileService,
   });
 
   Future<LoginResponseDto> login(Map<String, dynamic> json) async {
@@ -21,8 +24,9 @@ class LoginAPIService {
       final joinRes = LoginResponseDto.fromJson(res.data);
 
       return joinRes;
-    } catch (e, s) {
-      print("error: ${e.toString()}\ns: ${s.toString()}");
+    } catch (error, stackTrace) {
+      logFileService.errorLog(
+          target: "LoginAPIService", error: error, stackTrace: stackTrace);
       rethrow;
     }
   }

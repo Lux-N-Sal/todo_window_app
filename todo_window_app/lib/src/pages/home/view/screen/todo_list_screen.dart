@@ -7,7 +7,7 @@ import 'package:todo_window_app/src/pages/home/provider/session_provider.dart';
 import 'package:todo_window_app/src/pages/home/provider/todo_list_data_provider.dart';
 import 'package:todo_window_app/src/pages/home/provider/todo_list_provider.dart';
 import 'package:todo_window_app/src/pages/home/provider/todo_list_screen_viewmodel.dart';
-import 'package:todo_window_app/src/repositories/provider/todo_list_repository_provider.dart';
+import 'package:todo_window_app/src/repositories/api/provider/todo_list_repository_provider.dart';
 import 'package:todo_window_app/style/component/editable_listTile.dart';
 
 class TodoListScreen extends ConsumerWidget {

@@ -6,8 +6,8 @@ import 'package:todo_window_app/src/enum/api.dart';
 import 'package:todo_window_app/src/pages/home/provider/session_provider.dart';
 import 'package:todo_window_app/src/pages/home/provider/todo_list_provider.dart';
 import 'package:todo_window_app/src/pages/login/providers/state/login_state.dart';
-import 'package:todo_window_app/src/repositories/provider/login_repository_provider.dart';
-import 'package:todo_window_app/src/repositories/provider/todo_list_repository_provider.dart';
+import 'package:todo_window_app/src/repositories/api/provider/login_repository_provider.dart';
+import 'package:todo_window_app/src/repositories/api/provider/todo_list_repository_provider.dart';
 
 part 'login_provider.g.dart';
 

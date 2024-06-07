@@ -6,7 +6,7 @@ part of 'join_repository_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$joinRepositoryHash() => r'd80dc5337302b6447a5a6330bf1a0cfb10eb9c57';
+String _$joinRepositoryHash() => r'51cefa2f45909fdd82592f9c7c8b8b104b04aec7';
 
 /// See also [joinRepository].
 @ProviderFor(joinRepository)
@@ -16,8 +16,16 @@ final joinRepositoryProvider = AutoDisposeProvider<JoinRepository>.internal(
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$joinRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[
+    joinAPIServiceProvider,
+    logFileServiceProvider
+  ],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    joinAPIServiceProvider,
+    ...?joinAPIServiceProvider.allTransitiveDependencies,
+    logFileServiceProvider,
+    ...?logFileServiceProvider.allTransitiveDependencies
+  },
 );
 
 typedef JoinRepositoryRef = AutoDisposeProviderRef<JoinRepository>;
