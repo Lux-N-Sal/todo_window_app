@@ -4,15 +4,12 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 import 'package:todo_window_app/src/enum/enum_file_name.dart';
-import 'package:todo_window_app/src/services/local/log_file_service.dart';
 
 class LocalFileService {
   final FileName fileName;
-  final LogFileService logFileService;
 
   LocalFileService({
     required this.fileName,
-    required this.logFileService,
   });
 
   // 로컬 경로 가져오기
@@ -37,19 +34,13 @@ class LocalFileService {
 
     /// 해당 파일이 없다면 생성
     if (!await file.exists()) {
-      logFileService.customErrorLog(
-        target: "LocalDataService/get localFile",
-        message: "File Not Found : ${file.path}",
-      );
+      print(
+          "target : LocalDataService/get localFile\nmessage : File Not Found : ${file.path}");
       try {
         await file.create();
-      } catch (e, s) {
-        /// 에러나면 로그
-        logFileService.errorLog(
-          target: "LocalDataService/get localFile",
-          error: e,
-          stackTrace: s,
-        );
+      } catch (error, stackTrace) {
+        print(
+            "target : LocalDataService/get localFile\nerror : ${error.toString}\nstackTrace: ${stackTrace.toString()}");
       }
     }
     return file;
@@ -61,21 +52,16 @@ class LocalFileService {
 
       /// 존재하는 파일인지 검사
       if (!file.existsSync()) {
-        logFileService.customErrorLog(
-          target: "LocalDataService/readFile()",
-          message: "File Not Found : ${file.path}",
-        );
+        print(
+            "target : LocalDataService/readFile()\nmessage : File Not Found : ${file.path}");
         return "";
       }
 
       String data = await file.readAsString();
       return data;
-    } catch (e, s) {
-      logFileService.errorLog(
-        target: "LocalDataService/readFile()",
-        error: e,
-        stackTrace: s,
-      );
+    } catch (error, stackTrace) {
+      print(
+          "target : LocalDataService/readFile()\nerror : ${error.toString}\nstackTrace: ${stackTrace.toString()}");
       return "";
     }
   }
@@ -90,21 +76,16 @@ class LocalFileService {
       /// 존재하는 파일인지 검사
       if (!file.existsSync()) {
         print("file not found? ${file.existsSync().toString()}");
-        logFileService.customErrorLog(
-          target: "LocalDataService/readFileFromJson()",
-          message: "File Not Found : ${file.path}",
-        );
+        print(
+            "target : LocalDataService/readFileFromJson()\nmessage : File Not Found : ${file.path}");
         return null;
       }
 
       String data = await file.readAsString();
       return json.decode(data);
-    } catch (e, s) {
-      logFileService.errorLog(
-        target: "LocalDataService/readFileFromJson()",
-        error: e,
-        stackTrace: s,
-      );
+    } catch (error, stackTrace) {
+      print(
+          "target : LocalDataService/readFileFromJson()\nerror : ${error.toString}\nstackTrace: ${stackTrace.toString()}");
       return null;
     }
   }
@@ -115,12 +96,9 @@ class LocalFileService {
       String jsonString = json.encode(jsonMap);
       print("writeFileToJson() : $jsonString");
       return file.writeAsString(jsonString);
-    } catch (e, s) {
-      logFileService.errorLog(
-        target: "LocalfileService/writeFileToJson()",
-        error: e,
-        stackTrace: s,
-      );
+    } catch (error, stackTrace) {
+      print(
+          "target : LocalDataService/writeFileToJson()\nerror : ${error.toString}\nstackTrace: ${stackTrace.toString()}");
       return File("$_localPath\\e.txt");
     }
   }

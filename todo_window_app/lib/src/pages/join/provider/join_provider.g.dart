@@ -22,7 +22,7 @@ final joinViewmodelProvider =
 );
 
 typedef _$JoinViewmodel = AutoDisposeNotifier<JoinState>;
-String _$asyncJoinHash() => r'e6ed6981c24740f41440a44fac559ef55fd3f0e1';
+String _$asyncJoinHash() => r'822ce8eec80ffbb54764fd7d70589c2af51bc5fb';
 
 /// See also [AsyncJoin].
 @ProviderFor(AsyncJoin)
@@ -32,8 +32,11 @@ final asyncJoinProvider =
   name: r'asyncJoinProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$asyncJoinHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[joinRepositoryProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    joinRepositoryProvider,
+    ...?joinRepositoryProvider.allTransitiveDependencies
+  },
 );
 
 typedef _$AsyncJoin = AutoDisposeAsyncNotifier<bool>;

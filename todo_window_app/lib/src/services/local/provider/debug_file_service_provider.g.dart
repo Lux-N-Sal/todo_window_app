@@ -1,28 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'create_todo_list_provider.dart';
+part of 'debug_file_service_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$createTodoListControllerHash() =>
-    r'fb914106892630d8b69741c832f30eb30c293d92';
+String _$debugFileServiceHash() => r'1f4eaefeb94ec13ad6aa2c8fa5f2e5d7bf26eebf';
 
-/// See also [createTodoListController].
-@ProviderFor(createTodoListController)
-final createTodoListControllerProvider =
-    AutoDisposeProvider<TextEditingController>.internal(
-  createTodoListController,
-  name: r'createTodoListControllerProvider',
+/// See also [debugFileService].
+@ProviderFor(debugFileService)
+final debugFileServiceProvider = AutoDisposeProvider<LocalFileService>.internal(
+  debugFileService,
+  name: r'debugFileServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$createTodoListControllerHash,
+      : _$debugFileServiceHash,
   dependencies: const <ProviderOrFamily>[],
   allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
-typedef CreateTodoListControllerRef
-    = AutoDisposeProviderRef<TextEditingController>;
+typedef DebugFileServiceRef = AutoDisposeProviderRef<LocalFileService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

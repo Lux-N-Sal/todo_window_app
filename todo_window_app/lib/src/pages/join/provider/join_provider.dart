@@ -32,7 +32,7 @@ class JoinViewmodel extends _$JoinViewmodel {
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [joinRepository])
 class AsyncJoin extends _$AsyncJoin {
   @override
   FutureOr<bool> build() {

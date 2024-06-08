@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
-import 'package:todo_window_app/src/custom_error/custom_error.dart';
 import 'package:todo_window_app/src/pages/login/providers/login_provider.dart';
 import 'package:todo_window_app/src/pages/login/view/widgets/login_box.dart';
 import 'package:todo_window_app/src/public/widgets/error_dialog.dart';
 import 'package:todo_window_app/src/public/widgets/titlebar.dart';
+import 'package:todo_window_app/src/services/local/provider/log_file_service_provider.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
@@ -22,7 +22,9 @@ class LoginPage extends ConsumerWidget {
           }
         },
         error: (error, stackTrace) {
-          errorDialog(ref, (error as CustomError).error);
+          errorDialog(ref, error.toString());
+          ref.watch(logFileServiceProvider).errorLog(
+              target: "LoginPage", error: error, stackTrace: stackTrace);
           ref.read(loginViewmodelProvider.notifier).isLoadingEnd();
         },
         loading: () {

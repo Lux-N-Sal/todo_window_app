@@ -7,7 +7,7 @@ part of 'always_local_file_service_provider.dart';
 // **************************************************************************
 
 String _$alwaysLocalFileServiceHash() =>
-    r'1e34b052b0ec6af1a4ffd73ea5800097327dd40e';
+    r'77bd53b82a9236677a9c7f648b7a82ca0c752c4e';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -57,18 +57,14 @@ class AlwaysLocalFileServiceFamily extends Family<LocalFileService> {
     );
   }
 
-  static final Iterable<ProviderOrFamily> _dependencies = <ProviderOrFamily>[
-    alwaysLogFileServiceProvider
-  ];
+  static final Iterable<ProviderOrFamily> _dependencies =
+      const <ProviderOrFamily>[];
 
   @override
   Iterable<ProviderOrFamily>? get dependencies => _dependencies;
 
   static final Iterable<ProviderOrFamily> _allTransitiveDependencies =
-      <ProviderOrFamily>{
-    alwaysLogFileServiceProvider,
-    ...?alwaysLogFileServiceProvider.allTransitiveDependencies
-  };
+      const <ProviderOrFamily>{};
 
   @override
   Iterable<ProviderOrFamily>? get allTransitiveDependencies =>

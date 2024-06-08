@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_window_app/extensions/theme/themedata_ext.dart';
 import 'package:todo_window_app/src/enum/api.dart';
-import 'package:todo_window_app/src/pages/home/provider/create_todo_list_provider.dart';
+import 'package:todo_window_app/src/pages/home/provider/nav_viewmodel_provider.dart';
 import 'package:todo_window_app/src/pages/home/provider/session_provider.dart';
 import 'package:todo_window_app/src/pages/home/provider/todo_list_provider.dart';
 import 'package:todo_window_app/src/repositories/api/provider/todo_list_repository_provider.dart';
@@ -16,7 +16,7 @@ class CreateTodoListTextfield extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(createTodoListControllerProvider);
+    final controller = ref.watch(navViewmodelProvider).createTodoListController;
     final jwt = ref.watch(sessionProvider).jwt;
     return Container(
       decoration: BoxDecoration(

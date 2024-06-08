@@ -35,7 +35,7 @@ class LoginViewmodel extends _$LoginViewmodel {
   }
 }
 
-@Riverpod(dependencies: [todoListRepository, TodoList])
+@Riverpod(dependencies: [todoListRepository, TodoList, loginRepository])
 class AsyncLogin extends _$AsyncLogin {
   @override
   FutureOr<bool> build() {

@@ -31,8 +31,8 @@ extension ThemeServiceExt on WidgetRef {
         ),
         unselectedWidgetColor: theme.color.background,
         scrollbarTheme: ScrollbarThemeData(
-          thumbColor: MaterialStateProperty.all(theme.color.bar),
-          thickness: MaterialStateProperty.all(6),
+          thumbColor: WidgetStateProperty.all(theme.color.bar),
+          thickness: WidgetStateProperty.all(6),
           radius: const Radius.circular(3),
         ),
         checkboxTheme: CheckboxThemeData(
@@ -40,12 +40,12 @@ extension ThemeServiceExt on WidgetRef {
           side: BorderSide(
             color: theme.color.boarderColor,
           ),
-          checkColor: MaterialStateProperty.all(theme.color.background),
-          fillColor: MaterialStateProperty.resolveWith(
+          checkColor: WidgetStateProperty.all(theme.color.background),
+          fillColor: WidgetStateProperty.resolveWith(
             (states) {
-              if (states.contains(MaterialState.selected)) {
+              if (states.contains(WidgetState.selected)) {
                 return theme.color.text;
-              } else if (states.contains(MaterialState.hovered)) {
+              } else if (states.contains(WidgetState.hovered)) {
                 return theme.color.hoverColor;
               }
               return theme.color.container;

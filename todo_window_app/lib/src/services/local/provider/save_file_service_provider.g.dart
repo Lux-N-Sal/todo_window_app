@@ -6,7 +6,7 @@ part of 'save_file_service_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$saveFileServiceHash() => r'941bd920420e65825d39afd811570098ed153b64';
+String _$saveFileServiceHash() => r'3dc880c29ec11718893af5753855e774298c0f8d';
 
 /// See also [saveFileService].
 @ProviderFor(saveFileService)
@@ -18,12 +18,12 @@ final saveFileServiceProvider =
       ? null
       : _$saveFileServiceHash,
   dependencies: <ProviderOrFamily>[
-    localFileServiceProvider,
+    settingFileServiceProvider,
     logFileServiceProvider
   ],
   allTransitiveDependencies: <ProviderOrFamily>{
-    localFileServiceProvider,
-    ...?localFileServiceProvider.allTransitiveDependencies,
+    settingFileServiceProvider,
+    ...?settingFileServiceProvider.allTransitiveDependencies,
     logFileServiceProvider,
     ...?logFileServiceProvider.allTransitiveDependencies
   },

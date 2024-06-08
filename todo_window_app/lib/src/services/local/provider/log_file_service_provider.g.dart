@@ -6,7 +6,7 @@ part of 'log_file_service_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$logFileServiceHash() => r'62130babae104fd9b7dbcfb37087a3405436a55e';
+String _$logFileServiceHash() => r'c33f0d7aafa2d946ca8b502f133ecda3e095e9bb';
 
 /// See also [logFileService].
 @ProviderFor(logFileService)
@@ -16,10 +16,10 @@ final logFileServiceProvider = AutoDisposeProvider<LogFileService>.internal(
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$logFileServiceHash,
-  dependencies: <ProviderOrFamily>[localFileServiceProvider],
+  dependencies: <ProviderOrFamily>[debugFileServiceProvider],
   allTransitiveDependencies: <ProviderOrFamily>{
-    localFileServiceProvider,
-    ...?localFileServiceProvider.allTransitiveDependencies
+    debugFileServiceProvider,
+    ...?debugFileServiceProvider.allTransitiveDependencies
   },
 );
 
